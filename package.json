@@ -1,0 +1,25 @@
+{
+  "name": "appsland",
+  "version": "1.0.0",
+  "description": "",
+  "main": "organize-icons.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+ssh://git@github.com/D3rS3b/appland.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/D3rS3b/appland/issues"
+  },
+  "homepage": "https://github.com/D3rS3b/appland#readme",
+  "dependencies": {
+    "fs-extra": "^11.3.2",
+    "sharp": "^0.34.4"
+  }
+}

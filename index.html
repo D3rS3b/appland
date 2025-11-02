@@ -11,7 +11,7 @@
 
   <!-- Navbar -->
   <nav class="bg-gray-800 text-white p-4 flex justify-between items-center">
-    <h1 class="font-bold text-xl">Winget Codes</h1>
+    <h1 class="font-bold text-xl">Winget Apps</h1>
     <ul class="flex gap-6">
       <li><a href="#apps" class="hover:text-gray-400">Aplicaciones</a></li>
       <li><a href="#contact" class="hover:text-gray-400">Contacto</a></li>
@@ -26,43 +26,49 @@
 
   <!-- Sección de aplicaciones -->
   <main id="apps" class="py-12 px-6 max-w-6xl mx-auto grid md:grid-cols-3 gap-6">
-    
-    <!-- Tarjeta de ejemplo -->
-    <div class="bg-white shadow-md rounded-lg p-6 flex flex-col items-center text-center hover:shadow-xl transition">
-      <img src="icons/vscode.png" alt="VSCode" class="w-16 h-16 mb-2">
-      <h3 class="font-bold text-xl mb-1">Visual Studio Code</h3>
-      <p class="text-sm mb-3">Editor de código fuente de Microsoft</p>
-      <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
-        onclick="navigator.clipboard.writeText('winget install --id Microsoft.VisualStudioCode -e').then(() => alert('VSCode command copied!'))">
-        Copy Winget Command
-      </button>
-    </div>
 
-    <div class="bg-white shadow-md rounded-lg p-6 flex flex-col items-center text-center hover:shadow-xl transition">
-      <img src="icons/git.png" alt="Git" class="w-16 h-16 mb-2">
-      <h3 class="font-bold text-xl mb-1">Git</h3>
-      <p class="text-sm mb-3">Sistema de control de versiones</p>
-      <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
-        onclick="navigator.clipboard.writeText('winget install --id Git.Git -e').then(() => alert('Git command copied!'))">
-        Copy Winget Command
-      </button>
-    </div>
+    <!-- Tarjetas de aplicaciones -->
+    <script>
+      const apps = [
+        { name: "Visual Studio Code", icon: "icons/vscode.png", description: "Editor de código de Microsoft", cmd: "winget install --id Microsoft.VisualStudioCode -e" },
+        { name: "Git", icon: "icons/git.png", description: "Sistema de control de versiones", cmd: "winget install --id Git.Git -e" },
+        { name: "Node.js", icon: "icons/nodejs.png", description: "Entorno de ejecución JavaScript", cmd: "winget install --id OpenJS.NodeJS -e" },
+        { name: "Google Chrome", icon: "icons/chrome.png", description: "Navegador web", cmd: "winget install --id Google.Chrome -e" },
+        { name: "Firefox", icon: "icons/firefox.png", description: "Navegador web Mozilla", cmd: "winget install --id Mozilla.Firefox -e" },
+        { name: "Spotify", icon: "icons/spotify.png", description: "Reproductor de música", cmd: "winget install --id Spotify.Spotify -e" },
+        { name: "Slack", icon: "icons/slack.png", description: "Comunicación de equipos", cmd: "winget install --id SlackTechnologies.Slack -e" },
+        { name: "Discord", icon: "icons/discord.png", description: "Chat y comunidades", cmd: "winget install --id Discord.Discord -e" },
+        { name: "Zoom", icon: "icons/zoom.png", description: "Videollamadas", cmd: "winget install --id Zoom.Zoom -e" },
+        { name: "7-Zip", icon: "icons/7zip.png", description: "Compresor de archivos", cmd: "winget install --id 7zip.7zip -e" }
+      ];
 
-    <div class="bg-white shadow-md rounded-lg p-6 flex flex-col items-center text-center hover:shadow-xl transition">
-      <img src="icons/nodejs.png" alt="Node.js" class="w-16 h-16 mb-2">
-      <h3 class="font-bold text-xl mb-1">Node.js</h3>
-      <p class="text-sm mb-3">Entorno de ejecución JavaScript</p>
-      <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition"
-        onclick="navigator.clipboard.writeText('winget install --id OpenJS.NodeJS -e').then(() => alert('Node.js command copied!'))">
-        Copy Winget Command
-      </button>
-    </div>
+      const container = document.currentScript.parentNode;
+      apps.forEach(app => {
+        const card = document.createElement("div");
+        card.className = "bg-white shadow-md rounded-lg p-6 flex flex-col items-center text-center hover:shadow-xl transition";
+        card.innerHTML = `
+          <img src="${app.icon}" alt="${app.name}" class="w-16 h-16 mb-2">
+          <h3 class="font-bold text-xl mb-1">${app.name}</h3>
+          <p class="text-sm mb-3">${app.description}</p>
+          <button class="bg-blue-600 text-white px-4 py-2 rounded hover:bg-blue-700 transition">
+            Copy Winget Command
+          </button>
+        `;
+        const btn = card.querySelector("button");
+        btn.addEventListener("click", () => {
+          navigator.clipboard.writeText(app.cmd)
+            .then(() => alert(`${app.name} command copied!`))
+            .catch(err => console.error(err));
+        });
+        container.appendChild(card);
+      });
+    </script>
 
   </main>
 
   <!-- Footer -->
   <footer id="contact" class="bg-gray-800 text-white text-center py-6 mt-12">
-    <p>© 2025 Winget Codes. Todos los derechos reservados.</p>
+    <p>© 2025 App Land. Todos los derechos reservados.</p>
   </footer>
 
 </body>
